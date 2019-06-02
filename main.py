@@ -2,7 +2,6 @@ import requests
 import followStatistics
 from bs4 import BeautifulSoup
 
-followStatistics.printHello()
 #result = requests.get("https://twitter.com/JSourivongs")
 #content = result.content
 class Followstats:
@@ -49,3 +48,10 @@ for u in it:
         #print(u + " does not follow you back!")
     #else:
         #print(u + " is not followed back by you!")
+
+julian = followStatistics.FollowStatistics()
+julian.initTheRest("following.html", "followers.html")
+#it = iter(julian.dontFollowBack)
+it = iter(julian.doesntFollowYou)
+for f in it:
+    print(f)

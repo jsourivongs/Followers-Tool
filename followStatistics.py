@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-class followStatistics:
+class FollowStatistics:
     # Member Variables
     numFollowers=0
     numFollowing=0
@@ -20,31 +20,31 @@ class followStatistics:
     def printMutuals():
         print("Not yet implemented")
 
-    def initFollowing(path):
+    def initFollowing(self, path):
         f = open(path)
         soup = BeautifulSoup(f, features="html.parser")
         following = soup.find_all("a", class_="FPmhX")
         for u in following:
             user = u.string
-            following[user]=true
+            self.following[user]=True
 
-    def initFollowers(path):
+    def initFollowers(self, path):
         f = open(path)
         soup = BeautifulSoup(f, features="html.parser")
         following = soup.find_all("a", class_="FPmhX")
         for u in following:
             user = u.string
-            followers[user]=true
+            self.followers[user]=True
         return
 
-    def initTheRest(followingPath, followersPath):
-        initFollowing(followingPath)
-        initFollowers(followersPath)
-        for user in followers:
-            if user in following:
-                mutualFollowers[user]=True
+    def initTheRest(self, followingPath, followersPath):
+        self.initFollowing(followingPath)
+        self.initFollowers(followersPath)
+        for user in self.followers:
+            if user in self.following:
+                self.mutualFollowers[user]=True
             else:
-                dontFollowBack[user] = True
-        for user in following:
-            if user not in mutualFollowers:
-                doesntFollowYou[user] = True
+                self.dontFollowBack[user] = True
+        for user in self.following:
+            if user not in self.mutualFollowers:
+                self.doesntFollowYou[user] = True
